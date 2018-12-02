@@ -38,7 +38,7 @@ class Application(tk.Frame):
             createTable()
 
         def initOutbox():
-            outbox.delete(1.0, tk.END)
+            outbox.delete('1.0', 'end')
 
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
