@@ -22,13 +22,13 @@ class Application(tk.Frame):
         # 表の入力
         intitle = tk.Label(self, text='入力')
         intitle.grid(row=2, column=0, padx=10, pady=10)
-        inbox = tk.Text(self, width=50)
+        inbox = tk.Text(self, width=50, wrap=tk.NONE)
         inbox.grid(row=3, column=0, padx=10)
 
         # 表の出力
         outtitle = tk.Label(self, text='出力')
         outtitle.grid(row=2, column=2, padx=30, pady=10)
-        outbox = tk.Text(self, width=50)
+        outbox = tk.Text(self, width=50, wrap=tk.NONE)
         outbox.grid(row=3, column=2, padx=10)
 
         # 変換ボタン
