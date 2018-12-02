@@ -7,6 +7,7 @@ class Application(tk.Frame):
         tk.Frame.__init__(self, master)
         self.master.title('tvs2tex')
         self.master.geometry('1000x500')
+        self.input = ''' bb'''
         # caption の入力
         captitle = tk.Label(self, text='表タイトル')
         captitle.grid(row=0, column=0, sticky=tk.E)
@@ -31,8 +32,19 @@ class Application(tk.Frame):
         outbox = tk.Text(self, width=50, wrap=tk.NONE)
         outbox.grid(row=3, column=2, padx=10)
 
+        def clickedOnButton():
+            getTable()
+            createTable()
+            print(self.input)
+
+        def getTable():
+            self.input = inbox.get('1.0', 'end-1c')
+
+        def createTable():
+            outbox.insert('1.0', self.input)
+
         # 変換ボタン
-        chbutton = tk.Button(self, text='変換', padx=20, pady=20, font=(10))
+        chbutton = tk.Button(self, text='変換', padx=20, pady=20, font=(10), command=clickedOnButton)
         chbutton.grid(row=3, column=1)
 
 
