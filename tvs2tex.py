@@ -8,13 +8,13 @@ class Application(tk.Frame):
         self.master.title('tvs2tex')
         self.master.geometry('1000x500')
         # caption の入力
-        captitle = tk.Label(self, text=u'表タイトル')
+        captitle = tk.Label(self, text='表タイトル')
         captitle.grid(row=0, column=0, sticky=tk.E)
         capbox = tk.Entry(self, width=30)
         capbox.grid(row=0, column=1, padx=10, pady=10)
 
         # label の入力
-        labtitle = tk.Label(self, text=u'ラベル')
+        labtitle = tk.Label(self, text='ラベル')
         labtitle.grid(row=1, column=0, sticky=tk.E)
         labbox = tk.Entry(self, width=30)
         labbox.grid(row=1, column=1)
