@@ -31,6 +31,9 @@ class Application(tk.Frame):
         outbox = tk.Text(self, width=50)
         outbox.grid(row=3, column=2, padx=10)
 
+        # 変換ボタン
+        chbutton = tk.Button(self, text='変換', padx=20, pady=20, font=(10))
+        chbutton.grid(row=3, column=1)
 
 
 
