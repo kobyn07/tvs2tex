@@ -19,6 +19,15 @@ class Application(tk.Frame):
         labbox = tk.Entry(self, width=30)
         labbox.grid(row=1, column=1)
 
+        # 表の入力
+        intitle = tk.Label(self, text='入力')
+        intitle.grid(row=2, column=0, padx=10, pady=20, sticky=tk.W)
+
+
+        # 表の出力
+        outtitle = tk.Label(self, text='出力')
+        outtitle.grid(row=2, column=3, padx=30, pady=20, sticky=tk.E)
+
 
 
 
