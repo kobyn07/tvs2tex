@@ -21,12 +21,15 @@ class Application(tk.Frame):
 
         # 表の入力
         intitle = tk.Label(self, text='入力')
-        intitle.grid(row=2, column=0, padx=10, pady=20, sticky=tk.W)
-
+        intitle.grid(row=2, column=0, padx=10, pady=15)
+        inbox = tk.Text(self, width=50)
+        inbox.grid(row=3, column=0, padx=10)
 
         # 表の出力
         outtitle = tk.Label(self, text='出力')
-        outtitle.grid(row=2, column=3, padx=30, pady=20, sticky=tk.E)
+        outtitle.grid(row=2, column=3, padx=30, pady=15)
+        outbox = tk.Text(self, width=50)
+        outbox.grid(row=3, column=3, padx=10)
 
 
 
