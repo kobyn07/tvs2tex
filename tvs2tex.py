@@ -33,9 +33,12 @@ class Application(tk.Frame):
         outbox.grid(row=3, column=2, padx=10)
 
         def clickedOnButton():
+            initOutbox()
             getTable()
             createTable()
-            print(self.input)
+
+        def initOutbox():
+            outbox.delete(1.0, tk.END)
 
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
