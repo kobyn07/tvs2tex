@@ -1,5 +1,6 @@
 # -*- encording: utf8-*-
 import tkinter as tk
+import pyperclip
 
 class Application(tk.Frame):
 
@@ -47,6 +48,7 @@ class Application(tk.Frame):
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
             self.caption = capbox.get()
+            self.label = labbox.get()
 
         def countCenter():
             andCount = self.input.count('&')
@@ -70,14 +72,16 @@ class Application(tk.Frame):
 \t\t\t{core}
 \t\t\t\hline
 \t\t\end{tabular}
+\t\t\label{label}
 \t\end{center}
 \end{table}'''.format(core=self.input, table='{table}', center='{center}',
                 tabular='{tabular}', centerNumber='{'+centerNumber+'}',
-                caption='{'+self.caption+'}')
+                caption='{'+self.caption+'}', label='{tab:'+self.label+'}')
             self.input = self.input.replace('egin', 'begin')
 
         def output():
             outbox.insert('1.0', self.input)
+            pyperclip.copy(self.input)
 
 
         # 変換ボタン
