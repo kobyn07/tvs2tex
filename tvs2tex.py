@@ -32,6 +32,7 @@ class Application(tk.Frame):
         outbox = tk.Text(self, width=50, wrap=tk.NONE)
         outbox.grid(row=3, column=2, padx=10)
 
+        # 変換ボタンの挙動
         def clickedOnButton():
             initOutbox()
             getTable()
@@ -46,6 +47,18 @@ class Application(tk.Frame):
 
         def createTable():
             self.input = self.input.replace('\t', ' & ')
+            self.input = self.input.replace('\n', ' \\\ \n\t\t\t')
+            self.input = self.input + ' \\\\'
+            self.input = '''\egin{table}
+\t\egin{center}
+\t\t\egin{tabular}
+\t\t\t\hline
+\t\t\t{core}
+\t\t\t\hline
+\t\t\end{tabular}
+\t\end{center}
+\end{table}'''.format(core=self.input, table='{table}', center='{center}', tabular='{tabular}')
+            self.input = self.input.replace('egin', 'begin')
 
         def output():
             outbox.insert('1.0', self.input)
