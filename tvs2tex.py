@@ -49,13 +49,16 @@ class Application(tk.Frame):
 
         # 変換ボタンの挙動
         def clickedOnButton():
-            initOutbox()
+            initbox(outbox)
             getTable()
             createTable()
             output()
 
-        def initOutbox():
-            outbox.delete('1.0', 'end')
+        def initbox(name):
+            name.delete('1.0', 'end')
+
+        def initEntry(name):
+            name.delete('0', 'end')
 
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
@@ -103,6 +106,15 @@ class Application(tk.Frame):
         # 変換ボタン
         chbutton = tk.Button(self, text='変換', padx=20, pady=20, font=(10), command=clickedOnButton)
         chbutton.grid(row=3, column=1)
+
+        def clickedOnClearButton():
+            initbox(inbox)
+            initbox(outbox)
+            initEntry(capbox)
+            initEntry(labbox)
+
+        clerButton = tk.Button(self, text='消去', command=clickedOnClearButton)
+        clerButton.grid(row=4, column=1)
 
 
 
