@@ -45,19 +45,30 @@ class Application(tk.Frame):
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
 
+        def countCenter():
+            andCount = self.input.count('&')
+            rowCount = self.input.count('\n')
+            rowCount += 1
+            andCount = rowCount + andCount
+            centerCount = andCount / rowCount
+            return int(centerCount)
+
         def createTable():
             self.input = self.input.replace('\t', ' & ')
+            centerCount = countCenter()
+            centerNumber = 'c' * centerCount
             self.input = self.input.replace('\n', ' \\\ \n\t\t\t')
             self.input = self.input + ' \\\\'
             self.input = '''\egin{table}
 \t\egin{center}
-\t\t\egin{tabular}
+\t\t\egin{tabular}{centerNumber}
 \t\t\t\hline
 \t\t\t{core}
 \t\t\t\hline
 \t\t\end{tabular}
 \t\end{center}
-\end{table}'''.format(core=self.input, table='{table}', center='{center}', tabular='{tabular}')
+\end{table}'''.format(core=self.input, table='{table}', center='{center}',
+                tabular='{tabular}', centerNumber='{'+centerNumber+'}')
             self.input = self.input.replace('egin', 'begin')
 
         def output():
