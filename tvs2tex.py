@@ -64,7 +64,7 @@ class Application(tk.Frame):
             centerNumber = 'c' * centerCount
             self.input = self.input.replace('\n', ' \\\ \n\t\t\t')
             self.input = self.input + ' \\\\'
-            self.input = '''\egin{table}
+            self.input = '''\egin{table}[h]
 \t\egin{center}
 \t\t\caption{caption}
 \t\t\egin{tabular}{centerNumber}
