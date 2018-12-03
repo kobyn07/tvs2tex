@@ -35,6 +35,18 @@ class Application(tk.Frame):
         outbox = tk.Text(self, width=50, wrap=tk.NONE)
         outbox.grid(row=3, column=2, padx=10)
 
+        # クリップボードにコピーするかどうかのチェックボックス
+        clipBln = tk.BooleanVar()
+        clipBln.set(True)
+        clipcheck = tk.Checkbutton(self, variable=clipBln, text='クリップボードにコピーする')
+        clipcheck.grid(row=4, sticky=tk.W)
+
+        conmaBln = tk.BooleanVar()
+        conmaBln.set(True)
+        conmaCheck = tk.Checkbutton(self, variable=conmaBln, text='コンマをドルマークに変換する')
+        conmaCheck.grid(row=5, sticky=tk.W)
+
+
         # 変換ボタンの挙動
         def clickedOnButton():
             initOutbox()
@@ -59,6 +71,9 @@ class Application(tk.Frame):
             return int(centerCount)
 
         def createTable():
+            if conmaBln.get():
+                self.input = self.input.replace(',', '$')
+
             self.input = self.input.replace('\t', ' & ')
             centerCount = countCenter()
             centerNumber = 'c' * centerCount
@@ -81,7 +96,8 @@ class Application(tk.Frame):
 
         def output():
             outbox.insert('1.0', self.input)
-            pyperclip.copy(self.input)
+            if clipBln.get():
+                pyperclip.copy(self.input)
 
 
         # 変換ボタン
