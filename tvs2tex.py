@@ -8,6 +8,8 @@ class Application(tk.Frame):
         self.master.title('tvs2tex')
         self.master.geometry('1000x500')
         self.input = ''
+        self.caption = ''
+        self.label = ''
         # caption の入力
         captitle = tk.Label(self, text='表タイトル')
         captitle.grid(row=0, column=0, sticky=tk.E)
@@ -44,6 +46,7 @@ class Application(tk.Frame):
 
         def getTable():
             self.input = inbox.get('1.0', 'end-1c')
+            self.caption = capbox.get()
 
         def countCenter():
             andCount = self.input.count('&')
@@ -61,6 +64,7 @@ class Application(tk.Frame):
             self.input = self.input + ' \\\\'
             self.input = '''\egin{table}
 \t\egin{center}
+\t\t\caption{caption}
 \t\t\egin{tabular}{centerNumber}
 \t\t\t\hline
 \t\t\t{core}
@@ -68,7 +72,8 @@ class Application(tk.Frame):
 \t\t\end{tabular}
 \t\end{center}
 \end{table}'''.format(core=self.input, table='{table}', center='{center}',
-                tabular='{tabular}', centerNumber='{'+centerNumber+'}')
+                tabular='{tabular}', centerNumber='{'+centerNumber+'}',
+                caption='{'+self.caption+'}')
             self.input = self.input.replace('egin', 'begin')
 
         def output():
