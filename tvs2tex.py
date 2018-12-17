@@ -66,12 +66,18 @@ class Application(tk.Frame):
 			self.label = labbox.get()
 
 		def countCenter():
-			andCount = self.input.count('&')
-			rowCount = self.input.count('\n')
-			rowCount += 1
-			andCount = rowCount + andCount
-			centerCount = andCount / rowCount
-			return int(centerCount)
+			"""
+			入力された値から列数を返す 
+			"""
+			c = 0
+			row = ''
+			for w in self.input:
+				row += w
+				if '\n' in row:
+					break
+			c = row.count('&')
+			c += 1
+			return c
 
 		def createTable():
 			if conmaBln.get():
