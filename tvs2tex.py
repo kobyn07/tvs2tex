@@ -80,6 +80,10 @@ class Application(tk.Frame):
 			return c
 
 		def createTable():
+			"""
+			入力したタブ区切りのテキストから、LaTex のテーブルを生成
+			"""
+			# コンマをドルマークに変換するかどうかの判定
 			if conmaBln.get():
 				self.input = self.input.replace(',', '$')
 
@@ -101,6 +105,7 @@ class Application(tk.Frame):
 \\end{table}'''.format(core=self.input, table='{table}', center='{center}',
 				tabular='{tabular}', centerNumber='{'+centerNumber+'}',
 				caption='{'+self.caption+'}', label='{tab:'+self.label+'}')
+				
 		def output():
 			outbox.insert('1.0', self.input)
 			if clipBln.get():
