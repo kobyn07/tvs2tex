@@ -67,7 +67,7 @@ class Application(tk.Frame):
 
 		def countCenter():
 			"""
-			入力された値から列数を返す 
+			入力された値から列数を返す
 			"""
 			c = 0
 			row = ''
@@ -89,7 +89,7 @@ class Application(tk.Frame):
 					self.input = self.input.rstrip('\n')
 				else:
 					break
-			
+
 			# コンマをドルマークに変換するかどうかの判定
 			if conmaBln.get():
 				self.input = self.input.replace(',', '$')
