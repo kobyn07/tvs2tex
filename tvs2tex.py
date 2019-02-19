@@ -2,12 +2,13 @@
 import tkinter as tk
 import pyperclip
 
+
 class Application(tk.Frame):
 
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.master.title('tvs2tex')
-        self.master.geometry('1000x500')
+        self.master.geometry('1000x520')
         self.input = ''
         self.caption = ''
         self.label = ''
@@ -38,17 +39,26 @@ class Application(tk.Frame):
         # クリップボードにコピーするかどうかのチェックボックス
         clipBln = tk.BooleanVar()
         clipBln.set(True)
-        clipcheck = tk.Checkbutton(self, variable=clipBln, text='クリップボードにコピーする')
+        clipcheck = tk.Checkbutton(
+            self, variable=clipBln, text='クリップボードにコピーする')
         clipcheck.grid(row=4, sticky=tk.W)
 
         # コンマをドルマークに置換するかどうかのチェックボックス
         conmaBln = tk.BooleanVar()
         conmaBln.set(True)
-        conmaCheck = tk.Checkbutton(self, variable=conmaBln, text='コンマをドルマークに変換する')
+        conmaCheck = tk.Checkbutton(
+            self, variable=conmaBln, text='コンマをドルマークに変換する')
         conmaCheck.grid(row=5, sticky=tk.W)
 
+        # タブ区切りの出力にするかどうかのチェックボックス
+        tabBlm = tk.BooleanVar()
+        tabBlm.set(False)
+        tabCheck = tk.Checkbutton(
+            self, variable=tabBlm, text='出力時インデントをタブ区切りにする')
+        tabCheck.grid(row=6, sticky=tk.W)
 
         # 変換ボタンの挙動
+
         def clickedOnButton():
             initbox(outbox)
             getTable()
@@ -111,17 +121,20 @@ class Application(tk.Frame):
 \t\t\\label{label}
 \t\\end{center}
 \\end{table}'''.format(core=self.input, table='{table}', center='{center}',
-                tabular='{tabular}', centerNumber='{'+centerNumber+'}',
-                caption='{'+self.caption+'}', label='{tab:'+self.label+'}')
+                       tabular='{tabular}', centerNumber='{'+centerNumber+'}',
+                       caption='{'+self.caption+'}', label='{tab:'+self.label+'}')
+
+            if not tabBlm.get():
+                self.input = self.input.replace('\t', '    ')
 
         def output():
             outbox.insert('1.0', self.input)
             if clipBln.get():
                 pyperclip.copy(self.input)
 
-
         # 変換ボタン
-        chbutton = tk.Button(self, text='変換', padx=20, pady=20, font=(10), command=clickedOnButton)
+        chbutton = tk.Button(self, text='変換', padx=20,
+                             pady=20, font=(10), command=clickedOnButton)
         chbutton.grid(row=3, column=1)
 
         def clickedOnClearButton():
@@ -134,8 +147,7 @@ class Application(tk.Frame):
         clearButton.grid(row=4, column=1)
 
 
-
-if __name__=='__main__':
+if __name__ == '__main__':
     f = Application()
     f.pack()
     f.mainloop()
