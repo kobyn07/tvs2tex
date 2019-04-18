@@ -8,7 +8,7 @@ class Application(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.master.title('tvs2tex')
-        self.master.geometry('1000x520')
+        self.master.geometry('1000x550')
         self.input = ''
         self.caption = ''
         self.label = ''
@@ -56,6 +56,13 @@ class Application(tk.Frame):
         tabCheck = tk.Checkbutton(
             self, variable=tabBlm, text='出力時インデントをタブ区切りにする')
         tabCheck.grid(row=6, sticky=tk.W)
+
+        # 最初のtableの部分を消去するかどうかのチェックボックス
+        rm_table_bool = tk.BooleanVar()
+        rm_table_bool.set(False)
+        rm_table_check = tk.Checkbutton(
+            self, variable=rm_table_bool, text='table環境を出力しない')
+        rm_table_check.grid(row=7, sticky=tk.W)
 
         # 変換ボタンの挙動
 
@@ -126,6 +133,10 @@ class Application(tk.Frame):
 
             if not tabBlm.get():
                 self.input = self.input.replace('\t', '    ')
+
+            if rm_table_bool.get():
+                self.input = self.input.replace(
+                    "\\begin{table}[h]\n", "").replace("\\end{table}", "")
 
         def output():
             outbox.insert('1.0', self.input)
